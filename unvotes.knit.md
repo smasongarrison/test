@@ -1,7 +1,7 @@
 ---
 title: "UN Votes"
 author: "YOU"
-date: "`r Sys.Date()`"
+date: "2022-01-02"
 output: 
   md_document: 
     variant: markdown_github
@@ -22,7 +22,8 @@ We will use the __tidyverse__, __lubridate__, and __scales__ packages for the
 data wrangling and visualization, and the __DT__ package for interactive display 
 of tabular output.
 
-```{r load-packages, warning=FALSE, message=FALSE}
+
+```r
 library(tidyverse)
 library(lubridate)
 library(scales)
@@ -33,7 +34,8 @@ library(DT)
 
 The data we're using originally come from the **unvotes** package, but it's beenmodified a bit (by joining the various data frames provided in the package) to  help you get started with the analysis.
 
-```{r load-data}
+
+```r
 unvotes <- read_rds("data/unvotes.rds")
 ```
 
@@ -49,7 +51,8 @@ countries the code above `filter`s for. Note that the country name should be
 spelled and capitalized exactly the same way as it appears in the data. See 
 the [Appendix](#appendix) for a list of the countries in the data.
 
-```{r plot-yearly-yes-issue, fig.width=10, fig.height=6, message=FALSE}
+
+```r
 unvotes %>%
   filter(country %in% c("UK & NI", "US", "Turkey")) %>%
   mutate(year = year(date)) %>%
@@ -67,8 +70,9 @@ unvotes %>%
     x = "Year",
     color = "Country"
   )
-  
 ```
+
+![](unvotes_files/figure-markdown_github/plot-yearly-yes-issue-1.png)
 
 
 ## References {#references}
@@ -87,10 +91,4 @@ unvotes %>%
 
 Below is a list of countries in the dataset:
 
-```{r list-countries, echo=FALSE}
-unvotes %>% 
-  select(country) %>%
-  arrange(country) %>% 
-  distinct() %>%
-  datatable()
-```
+![](unvotes_files/figure-markdown_github/list-countries-1.png)
